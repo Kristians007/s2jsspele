@@ -1,0 +1,183 @@
+<html>
+ <head>
+  <title> Sheep on diabetes </title>
+ </head>
+
+<body>
+<canvas id="myCanvas" width=300 height=300 style="background:url('https://static.lsm.lv/media/2020/06/large/1/dbsj.jpg'); background-size: cover">
+  </canvas> 
+<script>
+
+ var ctx = myCanvas.getContext("2d");
+
+ var bug_x = myCanvas.width;
+ var bug_y = myCanvas.height;
+ var BugImg = new Image();
+ BugImg.src = "data:image/png;base64,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";         // The bug
+ 
+ var bug2_x = myCanvas.width;
+ var bug2_y = myCanvas.height;
+ var Bug2Img = new Image();
+ Bug2Img.src = "data:image/png;base64,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";         // The bug
+
+ var melon_x = 0;
+ var melon_y = 0;
+ var MelonImg = new Image();
+ MelonImg.src = "data:image/png;base64,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";  // The melon
+ 
+ var tree_x = 0;
+ var tree_y = 0;
+ var TreeImg = new Image();
+ TreeImg.src = "data:image/png;base64,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";
+
+ var score = 0;
+ var melon_speed = 3;
+ var melon_sidespeed = 1;
+ var tree_speed = 3;
+ var tree_sidespeed = 1;
+ var FPS = 40;                        // Cik kadru sekundē
+ var time_remaining = 180;
+ var i = 0;
+ var e = 0;
+ var r = 0;
+ var p = 0;
+ 
+ function restart_game() {
+     time_remaining = 180;
+     score = 0;
+     melon_speed = 3;
+     }
+
+ function ImagesTouching(x1, y1, img1, x2, y2, img2) {
+          // Šī funkcija nosaka, vai divi attēli saskaras
+          if (x1 >= x2+img2.width || x1+img1.width <= x2) return false;   // pārāk daudz uz sānu
+          if (y1 >= y2+img2.height || y1+img1.height <= y2) return false; // pārāk daudz uz augšu/leji
+          return true;                                                    // pārklājas   
+          }
+
+ function Do_a_Frame () {
+
+    ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);                 
+
+    ctx.fillStyle= "purple";
+    ctx.font = "20px Arial";
+    ctx.fillText("Score: " + score, 0, 20);                               // parāda rezultātu
+
+    ctx.drawImage(BugImg, bug_x, bug_y);                                 
+       ctx.drawImage(Bug2Img, bug2_x, bug2_y);                           
+    ctx.fillText("Time Remaining: " + Math.round(time_remaining), 0, 45); // atlikušais laiks
+
+    if (time_remaining <= 0) {                                            // ja laiks beidzas
+          ctx.fillStyle= "red";
+          ctx.font = "bold 50px Arial";                                   
+          ctx.textAlign="center";
+          ctx.fillText("Spēle beidzās", myCanvas.width / 2, myCanvas.height / 2);  
+          ctx.font = "bold 20px Arial";
+          ctx.fillText("Spied R lai spēlētu atkal", myCanvas.width / 2, (myCanvas.height / 2)+50);
+          ctx.textAlign="left";
+          }
+    else {
+          time_remaining = time_remaining - 1/FPS;                       
+          r++;
+          if (r == 400) {
+              melon_speed = melon_speed + 0.5;
+              tree_speed = tree_speed + 0.5;
+              r = 0;
+          }
+        
+          melon_y = melon_y + melon_speed;                                // pārvieto konfekti lejā
+          melon_x = melon_x + melon_sidespeed;
+          tree_y = tree_y + tree_speed;                                
+          tree_x = tree_x + tree_sidespeed;
+
+          if ((melon_y > myCanvas.height) && (tree_y > myCanvas.height)) {                                // ja aiziet zem lejasdaļas
+            if (p == 0) {
+                score--
+              melon_y= 5;                                                 // pārriet atpakaļ augšā
+              
+              melon_x= Math.random() * (myCanvas.width - MelonImg.width); // nejauši izvēlēta vieta x
+              i = Math.floor(Math.random()*2);
+              e = Math.floor(Math.random()*2);
+              p = Math.floor(Math.random()*2);
+              if (i == 0) {
+                  if (e == 0) {
+                    melon_sidespeed = Math.random() * 3;
+                  } else if (e == 1) {
+                      melon_sidespeed = Math.random() * -3;
+                  }
+              } else if (i == 1) {
+                melon_sidespeed= 0;
+              } 
+              
+            } else if (p == 1) {
+              tree_y= 5;                                                 // pārriet atpakaļ augšā
+              tree_x= Math.random() * (myCanvas.width - TreeImg.width); // nejauši izvēlēta pozīcija x
+              i = Math.floor(Math.random()*2);
+              e = Math.floor(Math.random()*2);
+              p = Math.floor(Math.random()*2);
+              if (i == 0) {
+                  if (e == 0) {
+                    tree_sidespeed = Math.random() * 3;
+                  } else if (e == 1) {
+                      tree_sidespeed = Math.random() * -3;
+                  }
+              } else if (i == 1) {
+                tree_sidespeed= 0;
+              } 
+            }
+          }
+        }
+        
+    if (p == 0) {
+    ctx.drawImage(MelonImg, melon_x, melon_y);                          
+    } else if (p == 1) {
+    ctx.drawImage(TreeImg, tree_x, tree_y);
+    }
+
+        if (ImagesTouching(bug_x, bug_y, BugImg, melon_x, melon_y, MelonImg)) {  
+        score= score + 2;                                                    // pieliekas pie rezultāta
+        melon_speed = melon_speed + 0.1;  
+        tree_speed = tree_speed + 0.1;                // krīt nedaudz ātrāk
+        melon_x= -MelonImg.width;                                          
+        
+        } else if (ImagesTouching(bug_x, bug_y, BugImg, tree_x, tree_y, TreeImg)) {  
+         tree_x= -TreeImg.width;  
+         restart_game();
+         
+        } else if (ImagesTouching(bug2_x, bug2_y, Bug2Img, melon_x, melon_y, MelonImg)) {  
+        score= score + 2;  
+        melon_speed = melon_speed + 0.1;  
+        tree_speed = tree_speed + 0.1;                // krīt nedaudz ātrāk
+        melon_x= -MelonImg.width;  
+        
+        } else if (ImagesTouching(bug2_x, bug2_y, Bug2Img, tree_x, tree_y, TreeImg)) { 
+         tree_x= -TreeImg.width;  
+         restart_game();
+        }
+    } 
+
+ setInterval(Do_a_Frame, 1000/FPS);                                         
+
+ function MyKeyDownHandler (MyEvent) { 
+   if (MyEvent.keyCode == 37 && bug_x > 0) {bug_x = bug_x - 10;}                          // pa kreisi
+   if (MyEvent.keyCode == 39 && bug_x+BugImg.width < myCanvas.width) {bug_x = bug_x+10;}  // pa labi
+   if (MyEvent.keyCode == 38 && bug_y > 0) {bug_y = bug_y - 10;}                    
+   if (MyEvent.keyCode == 40 && bug_y+BugImg.height < myCanvas.height) {bug_y = bug_y+10;}
+    
+    if (MyEvent.keyCode == 65 && bug2_x > 0) {bug2_x = bug2_x - 10;}                          // pa kreisi
+   if (MyEvent.keyCode == 68 && bug2_x+Bug2Img.width < myCanvas.width) {bug2_x = bug2_x+10;}  // pa labi
+   if (MyEvent.keyCode == 87 && bug2_y > 0) {bug2_y = bug2_y - 10;}                    
+   if (MyEvent.keyCode == 83 && bug2_y+Bug2Img.height < myCanvas.height) {bug2_y = bug2_y+10;}
+   
+   if (MyEvent.keyCode == 82) restart_game();                                             // S lai sāktu 
+   MyEvent.preventDefault();
+   }
+
+ addEventListener("keydown", MyKeyDownHandler);                       
+
+ myCanvas.width = window.innerWidth - 20;                            // aizpilda visu pārlūkprogrammas platumu
+ myCanvas.height = window.innerHeight - 20;                          // aizpilda visu pārlūkprogrammas augstumu
+
+</script>
+</body>
+</html>
